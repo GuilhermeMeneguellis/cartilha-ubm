@@ -1,26 +1,239 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ubm-burgundy: #5f1a23;
+  --ubm-burgundy-dark: #3d1118;
+  --ubm-cream: #f6e9c7;
+  --ubm-cream-warm: #f0dca6;
+  --ubm-ink: #2a0c10;
+  --background: #1a0608;
+  --foreground: #f6e9c7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ubm-burgundy: var(--ubm-burgundy);
+  --color-ubm-burgundy-dark: var(--ubm-burgundy-dark);
+  --color-ubm-cream: var(--ubm-cream);
+  --color-ubm-cream-warm: var(--ubm-cream-warm);
+  --color-ubm-ink: var(--ubm-ink);
+  --font-serif: var(--font-lora);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(95, 26, 35, 0.55), transparent 55%),
+    radial-gradient(circle at 80% 100%, rgba(61, 17, 24, 0.7), transparent 60%),
+    linear-gradient(160deg, #1a0608 0%, #0c0306 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.book-page {
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 250, 230, 0.35),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #f8edc9 0%, #f0dca6 100%);
+  background-color: var(--ubm-cream);
+  color: var(--ubm-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  padding: 2.25rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-page.burgundy {
+  background: linear-gradient(160deg, #5f1a23 0%, #4a1119 100%);
+  color: var(--ubm-cream);
+}
+.book-page.burgundy h1,
+.book-page.burgundy h2,
+.book-page.burgundy h3 {
+  color: var(--ubm-cream);
+}
+.book-page.burgundy .page-title-pill {
+  background: var(--ubm-cream);
+}
+.book-page.burgundy .section-divider {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--ubm-cream),
+    transparent
+  );
+}
+
+.book-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 5%, rgba(120, 70, 30, 0.06), transparent 35%),
+    radial-gradient(circle at 90% 95%, rgba(120, 70, 30, 0.05), transparent 35%);
+  pointer-events: none;
+}
+
+/* Subtle inner spine shadow on the right page (inner left edge) */
+.book-page.right::before {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.08) 2%,
+      transparent 6%
+    ),
+    radial-gradient(circle at 95% 95%, rgba(120, 70, 30, 0.05), transparent 35%);
+}
+
+/* Subtle inner spine shadow on the left page (inner right edge) */
+.book-page.left::before {
+  background-image:
+    linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.08) 2%,
+      transparent 6%
+    ),
+    radial-gradient(circle at 5% 5%, rgba(120, 70, 30, 0.05), transparent 35%);
+}
+
+.book-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.book-page h1,
+.book-page h2,
+.book-page h3 {
+  font-family: var(--font-lora), Georgia, serif;
+  color: var(--ubm-burgundy);
+}
+
+.cover-page {
+  background:
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(255, 230, 170, 0.95),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #f6e9c7 0%, #e9d28f 100%);
+  background-color: var(--ubm-cream);
+  color: var(--ubm-burgundy-dark);
+  font-family: var(--font-lora), Georgia, serif;
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 14px solid var(--ubm-burgundy-dark);
+  pointer-events: none;
+}
+
+.back-cover {
+  background: linear-gradient(160deg, #5f1a23 0%, #3d1118 100%);
+  color: var(--ubm-cream);
+  padding: 3rem 2.5rem;
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+.flipbook-shadow {
+  filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.55));
+}
+
+.pdf-sheet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #f6e9c7;
+  overflow: hidden;
+}
+
+.pdf-sheet img {
+  display: block;
+}
+
+.numbered-list {
+  counter-reset: item;
+}
+.numbered-list > li {
+  counter-increment: item;
+  position: relative;
+  padding-left: 2.25rem;
+  margin-bottom: 0.65rem;
+}
+.numbered-list > li::before {
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--ubm-burgundy);
+  color: var(--ubm-cream);
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.page-title-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ubm-cream-warm);
+  border: 2px solid var(--ubm-burgundy-dark);
+  color: var(--ubm-burgundy);
+  border-radius: 9999px;
+  padding: 0.45rem 1.15rem;
+  font-weight: 700;
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+.section-divider {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--ubm-burgundy),
+    transparent
+  );
+  margin: 0.75rem 0 1.25rem;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 0.9rem;
+  font-size: 0.7rem;
+  font-family: var(--font-inter), sans-serif;
+  color: var(--ubm-burgundy);
+  opacity: 0.6;
+}
+.page-number.right {
+  right: 1.5rem;
+}
+.page-number.left {
+  left: 1.5rem;
+}
+
+/* Hide blue text/link defaults inside the flipbook */
+.stf__parent {
+  outline: none;
 }
