@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const FlipBook = dynamic(() => import("./FlipBook"), {
+const SinglePageViewer = dynamic(() => import("./SinglePageViewer"), {
   ssr: false,
   loading: () => (
     <div className="text-[var(--ubm-cream)]/70 text-sm tracking-widest uppercase animate-pulse">
@@ -12,5 +12,5 @@ const FlipBook = dynamic(() => import("./FlipBook"), {
 });
 
 export default function BookViewer() {
-  return <FlipBook />;
+  return <SinglePageViewer />;
 }

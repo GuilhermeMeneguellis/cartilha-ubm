@@ -155,6 +155,16 @@ body {
   filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.55));
 }
 
+.single-page-shadow {
+  filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.55));
+}
+
+.single-page-sheet {
+  background: #f6e9c7;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
 .pdf-sheet {
   position: relative;
   width: 100%;

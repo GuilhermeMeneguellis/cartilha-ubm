@@ -11,7 +11,7 @@ export default function Home() {
           Cartilha do Núcleo de Pesquisa
         </h1>
         <p className="text-[var(--ubm-cream)]/70 text-xs md:text-sm mt-1 italic">
-          Arraste o canto da página ou use os botões para folhear
+          Use as setas do teclado ou os botões para navegar entre as páginas
         </p>
       </header>
       <BookViewer />
