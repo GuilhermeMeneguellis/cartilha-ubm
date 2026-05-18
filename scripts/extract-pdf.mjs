@@ -13,10 +13,10 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const outDir = path.join(root, "public", "pages");
 
-// PDF lives one folder above the Next app
+// PDF lives inside public/ so it can be re-uploaded easily.
 const pdfPath = path.resolve(
   root,
-  "..",
+  "public",
   "rev 2026 Conheça a Pesquisa no UBM Cartilha oficial.pdf",
 );
 
